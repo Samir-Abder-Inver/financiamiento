@@ -50,14 +50,14 @@ const CarItem = ({ car }) => {
             El vehículo está dentro de capacidad
           </>
         ) : (
-          'Este vehículo ha aumentado de precio'
+          'Para este vehiculo necesitas aumentar tu incial'
         )}
       </div>
       <div className="card-actions">
         <button className="action-button" onClick={handleVerPlanes}>
           Ver planes
         </button>
-        <button className="action-button">Características</button>
+        <a href={car.features_link} className="action-button">Características</a>
       </div>
     </div>
   );
