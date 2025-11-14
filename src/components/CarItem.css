@@ -121,7 +121,7 @@
 @media (max-width: 576px) {
   .card-content {
     padding: 1rem;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 0.5fr 1.5fr;
     grid-template-areas:
       'name name'
       'price image';
@@ -133,6 +133,7 @@
     font-size: 1.1rem;
     text-align: left;
     margin-bottom: 0;
+    margin-top: 0;
   }
 
   .price-info {
