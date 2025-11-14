@@ -1,8 +1,11 @@
 
 .car-list {
+  max-width: 900px;
+  margin: 0 auto;
   padding: 20px;
 }
 
 .intro {
   margin-bottom: 20px;
+  text-align: center;
 }
