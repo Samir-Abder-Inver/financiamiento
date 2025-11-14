@@ -1,0 +1,13 @@
+.plans {
+  padding: 20px;
+}
+
+.plans-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.plans-header h2 {
+  margin-left: 10px;
+}

@@ -1,0 +1,27 @@
+
+.plan-item {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.plan-details {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.plan-actions {
+  text-align: center;
+}
+
+.plan-actions button {
+  background-color: #343a40;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
