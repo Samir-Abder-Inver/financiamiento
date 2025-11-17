@@ -3,7 +3,7 @@
   background-color: #f7f9fb;
   border-radius: 12px;
   overflow: hidden;
-  margin-bottom: 1rem; /* Reduced margin */
+  margin-bottom: 5px; /* Reduced margin */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   border: 1px solid #e9ecef;
 }
@@ -52,6 +52,7 @@
   font-size: 0.875rem; /* Reduced font size */
   font-weight: 600;
   transition: background-color 0.3s ease;
+  text-decoration: none;
 }
 
 /* --- Layout Section --- */
