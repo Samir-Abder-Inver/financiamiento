@@ -16,24 +16,24 @@ const SuccessScreen = () => {
       <main className="success-content">
         <h2>Usted seleccionó</h2>
         <div className="selected-plan">
-          <div className="card-content">
-            <div className="car-name">{plan.name}</div>
-            <div className="price-info">
-              <div className="price-item">
-                <span className="price-label">Inicial</span>
-                <strong className="price-value">${plan.initial}</strong>
+          <div className="success-card-content">
+            <div className="success-car-name">{plan.name}</div>
+            <div className="success-price-info">
+              <div className="success-price-item">
+                <span className="success-price-label">Inicial</span>
+                <strong className="success-price-value">${plan.initial}</strong>
               </div>
-              <div className="price-item">
-                <span className="price-label">Cuotas mensuales (x12)</span>
-                <strong className="price-value">{plan.cuotas}</strong>
+              <div className="success-price-item">
+                <span className="success-price-label">Cuotas mensuales (x12)</span>
+                <strong className="success-price-value">{plan.cuotas}</strong>
               </div>
-              <div className="price-item">
-                <span className="price-label">Precio final</span>
-                <strong className="price-value">$12.888,53</strong>
+              <div className="success-price-item">
+                <span className="success-price-label">Precio final</span>
+                <strong className="success-price-value">$12.888,53</strong>
               </div>
             </div>
-            <div className="car-image-section">
-              <img className="car-image" src="/assets/imagenes/Haval_H6.png" alt="Haval H6" />
+            <div className="success-car-image-section">
+              <img className="success-car-image" src="/assets/imagenes/Haval_H6.png" alt="Haval H6" />
             </div>
           </div>
         </div>
