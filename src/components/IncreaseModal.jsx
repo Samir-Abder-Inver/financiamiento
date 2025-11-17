@@ -5,15 +5,22 @@ const IncreaseModal = ({ onClose, onUpdate }) => {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <h2>Aumentar Inicial</h2>
-        <p>El vehículo seleccionado supera tu capacidad de endeudamiento. Para continuar, te recomendamos aumentar el monto de la inicial.</p>
+        <h2>Actualiza la inicial</h2>
+        <p>
+          Para este vehículo necesitas aumentar tu inicial en [+$X] para aplicar
+          al crédito, ingresa tus datos para recalcular
+        </p>
         <div className="form-group">
-          <label htmlFor="increase-amount">Monto a aumentar</label>
-          <input type="number" id="increase-amount" placeholder="Ingrese el monto" />
+          <label htmlFor="increase-amount">Inicial disponible</label>
+          <input type="number" id="increase-amount" className="numeric-input" />
         </div>
         <div className="modal-actions">
-          <button className="btn btn-secondary" onClick={onClose}>Cancelar</button>
-          <button className="btn btn-primary" onClick={onUpdate}>Actualizar</button>
+          <button className="btn btn-update" onClick={onUpdate}>
+            Actualizar
+          </button>
+          <button className="btn btn-cancel" onClick={onClose}>
+            Cancelar
+          </button>
         </div>
       </div>
     </div>
