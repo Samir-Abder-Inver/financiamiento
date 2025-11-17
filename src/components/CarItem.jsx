@@ -50,7 +50,21 @@ const CarItem = ({ car }) => {
             El vehículo está dentro de capacidad
           </>
         ) : (
-          'Para este vehiculo necesitas aumentar tu incial'
+          <>
+            <svg
+              className="status-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10.263 2.341c.683-1.156 2.79-1.156 3.474 0l8.608 14.51c.656 1.109-.15 2.52-1.442 2.52H3.107c-1.292 0-2.098-1.411-1.442-2.52l8.6-14.51zM12 14.25a.75.75 0 00.75-.75V9a.75.75 0 00-1.5 0v4.5a.75.75 0 00.75.75zm0 2.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                clipRule="evenodd"
+              />
+            </svg>
+            Para este vehiculo necesitas aumentar tu inicial
+          </>
         )}
       </div>
       <div className="card-actions">

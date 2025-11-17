@@ -1,7 +1,7 @@
 .car-list {
   width: 100%;
   margin: 0 auto;
-  padding: 30px 1rem;
+  padding: 0 1rem;
 }
 
 .intro {
@@ -11,8 +11,7 @@
 @media (max-width: 576px) {
   .intro h2 {
     font-size: 14px;
-    margin-bottom: 5px;
-    margin-top: 0;
+    margin-top: 15px;
     text-align: left;
   }
 

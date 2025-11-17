@@ -24,7 +24,7 @@
 
 .modal-header {
   display: flex;
-  align-items: center;
+  align-items: left;
   margin-bottom: 15px;
 }
 
