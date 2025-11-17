@@ -1,174 +1,214 @@
-
 .car-item-card {
-  background-color: #f7f9fb;
-  border-radius: 12px;
-  overflow: hidden;
-  margin-bottom: 5px; /* Reduced margin */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e9ecef;
-  padding: 5px 0;
+    background-color: #f7f9fb;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e9ecef;
+    padding: 5px 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.car-item-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 .status {
-  padding: 0.5rem 1rem; /* Reduced padding */
-  text-align: center;
-  font-weight: 600;
-  font-size: 0.875rem; /* Reduced font size */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
 .status-icon {
-  width: 1.25rem;
-  height: 1.25rem;
-  padding: 1px;
+    width: 1.25rem;
+    height: 1.25rem;
+    padding: 1px;
 }
 
 .status-available {
-  background-color: #28a745;
-  color: white;
+    background-color: #28a745;
+    color: white;
 }
 
 .status-increase {
-  background-color: #ffc107;
-  color: black;
+    background-color: #ffc107;
+    color: black;
 }
 
 .card-actions {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  padding: 0.75rem 1.5rem; /* Reduced padding */
-  background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #f8f9fa;
 }
 
 .action-button {
-  background-color: #000;
-  color: white;
-  border: none;
-  padding: 0.6rem 1.2rem; /* Reduced padding */
-  border-radius: 2rem;
-  cursor: pointer;
-  font-size: 0.875rem; /* Reduced font size */
-  font-weight: 600;
-  transition: background-color 0.3s ease;
-  text-decoration: none;
+    background-color: #000;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
 }
 
-/* --- Layout Section --- */
-
 .card-content {
-  display: grid;
-  padding: 1rem; /* Reduced padding */
-  gap: 0.75rem; /* Reduced gap */
+    display: grid;
+    padding: 1rem;
+    gap: 0.75rem;
 }
 
 .car-name {
-  grid-area: name;
-  font-size: 1.25rem; /* Reduced font size */
-  font-weight: 700;
-  color: #212529;
+    grid-area: name;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #212529;
 }
 
 .price-info {
-  grid-area: price;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem; /* Reduced gap */
+    grid-area: price;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .price-item {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .price-label {
-  color: #6c757d;
-  font-size: 0.875rem; /* Reduced font size */
+    color: #6c757d;
+    font-size: 0.875rem;
 }
 
 .price-value {
-  font-size: 1.125rem; /* Reduced font size */
-  font-weight: 700;
-  color: #212529;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #212529;
 }
 
 .car-image-section {
-  grid-area: image;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+    grid-area: image;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
 .car-image {
-  width: 100%;
-  aspect-ratio: 2.5 / 1; /* Changed aspect ratio */
-  object-fit: cover;
-  border-radius: 8px;
+    width: 100%;
+    aspect-ratio: 2.5 / 1;
+    object-fit: cover;
+    border-radius: 8px;
 }
 
 /* Desktop First */
 .card-content {
-  grid-template-columns: 40% 60%;
-  grid-template-areas:
-    'name image'
-    'price image';
-  align-items: center;
+    grid-template-columns: 40% 60%;
+    grid-template-areas:
+        'name image'
+        'price image';
+    align-items: center;
 }
 
 /* Mobile */
 @media (max-width: 576px) {
-  .card-content {
-    padding: 0rem 1rem;
-    grid-template-columns: 0.5fr 1.5fr;
-    grid-template-areas:
-      'name name'
-      'price image';
-    align-items: center;
-    gap: 0rem 1rem;
-  }
+    .card-content {
+        padding: 0rem 1rem;
+        grid-template-columns: 0.5fr 1.5fr;
+        grid-template-areas:
+            'name name'
+            'price image';
+        align-items: center;
+        gap: 0rem 1rem;
+    }
 
-  .car-name {
-    font-size: 12px;
-    text-align: left;
-    margin-bottom: 0;
-    margin-top: 5px;
-  }
+    .car-name {
+        font-size: 12px;
+        text-align: left;
+        margin-bottom: 0;
+        margin-top: 5px;
+    }
 
-  .price-info {
-    gap: 0rem;
-    padding-top: 0rem;
-  }
+    .price-info {
+        gap: 0rem;
+        padding-top: 0rem;
+    }
 
-  .price-label {
-    font-size: 8px;
-  }
+    .price-label {
+        font-size: 8px;
+    }
 
-  .price-value {
-    font-size: 10px;
-  }
+    .price-value {
+        font-size: 10px;
+    }
 
-  .car-image {
-    transform: none;
-    padding-top: 0rem; /* Removed scaling to keep it compact */
-  }
+    .car-image {
+        transform: none;
+        padding-top: 0rem;
+    }
 
-  .status {
-    font-size: 10px;
-    padding: 0rem; /* Reduced padding */
-  }
+    .status {
+        font-size: 10px;
+        padding: 0rem;
+    }
 
-  .card-actions {
-    padding: 0.5rem;
-    gap: 0.5rem;
-  }
+    .card-actions {
+        padding: 0.5rem;
+        gap: 0.5rem;
+    }
 
-  .action-button {
-    padding: 0.3rem 1.2rem;
-    font-size: 10px;
-  }
+    .action-button {
+        padding: 0.3rem 1.2rem;
+        font-size: 10px;
+    }
+}
+
+@media (min-width: 768px) {
+    .car-item-card {
+        margin-bottom: 1rem;
+    }
+
+    .card-content {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            'image'
+            'name'
+            'price';
+        text-align: center;
+    }
+
+    .car-name {
+        font-size: 1.5rem;
+        margin-top: 1rem;
+    }
+
+    .price-info {
+        align-items: center;
+    }
+
+    .price-label {
+        font-size: 1rem;
+    }
+
+    .price-value {
+        font-size: 1.25rem;
+    }
+
+    .action-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
 }
