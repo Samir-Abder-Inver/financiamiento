@@ -4,7 +4,7 @@ import './IncreaseModal.css';
 const IncreaseModal = ({ onClose, onUpdate }) => {
   return (
     <div className="modal-overlay">
-      <div className="modal-content">
+      <div className="increase-modal-content">
         <h2>Actualiza la inicial</h2>
         <p>
           Para este vehículo necesitas aumentar tu inicial en [+$X] para aplicar

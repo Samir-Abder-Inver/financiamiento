@@ -9,7 +9,7 @@ const ConfirmationModal = ({ isOpen, onClose, planName }) => {
 
   return (
     <div className="modal-backdrop">
-      <div className="modal-content">
+      <div className="confirmation-modal-content">
         <div className="modal-header">
           <h3>¿Desea confirmar el [{planName}] y enviar esta información?</h3>
         </div>

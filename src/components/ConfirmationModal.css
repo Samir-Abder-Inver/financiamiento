@@ -13,7 +13,7 @@
   box-sizing: border-box;
 }
 
-.modal-content {
+.confirmation-modal-content {
   background-color: #fff;
   border-radius: 15px;
   padding: 20px;
@@ -40,7 +40,7 @@
   font-size: 1em;
 }
 
-.modal-content h2 {
+.confirmation-modal-content h2 {
   font-size: 1.2em;
   margin-bottom: 15px;
   text-align: center;
