@@ -1,0 +1,158 @@
+
+.success-screen {
+  background-color: #FFFFFF;
+  min-height: 100vh;
+  font-family: sans-serif;
+  color: #333;
+}
+
+.success-content {
+  padding: 2rem;
+}
+
+.success-content h2 {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.selected-plan {
+  margin-bottom: 2rem;
+}
+
+/* --- Layout Section for Selected Plan --- */
+.card-content {
+  display: grid;
+  padding: 1rem;
+  gap: 0.75rem;
+  background-color: #F7F9FB;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  grid-template-columns: 40% 60%;
+  grid-template-areas:
+    'name image'
+    'price image';
+  align-items: center;
+}
+
+.car-name {
+  grid-area: name;
+  font-size: 12px;
+  font-weight: 700;
+  color: #212529;
+}
+
+.price-info {
+  grid-area: price;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.price-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.price-label {
+  color: #6c757d;
+  font-size: 8px;
+}
+
+.price-value {
+  font-size: 10px;
+  font-weight: 700;
+  color: #212529;
+}
+
+.car-image-section {
+  grid-area: image;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.car-image {
+  width: 100%;
+  aspect-ratio: 2.5 / 1;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* --- Success Message & Animation --- */
+.success-message {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.success-checkmark {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: block;
+  stroke-width: 2;
+  stroke: #fff;
+  stroke-miterlimit: 10;
+  box-shadow: inset 0px 0px 0px #4bb71b;
+  animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+  margin: 0 auto 1rem;
+}
+
+.success-checkmark__circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+  stroke: #4bb71b;
+  fill: none;
+  animation: stroke .6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.success-checkmark__check {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: stroke .3s cubic-bezier(0.65, 0, 0.45, 1) .8s forwards;
+}
+
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes scale {
+  0%, 100% {
+    transform: none;
+  }
+  50% {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+}
+
+@keyframes fill {
+  100% {
+    box-shadow: inset 0px 0px 0px 40px #4bb71b;
+  }
+}
+
+.success-message p {
+  font-size: 14px;
+  margin: 0;
+}
+
+/* --- Next Steps Section --- */
+.next-steps {
+
+
+  text-align: center;
+}
+
+.next-steps p {
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: bold;
+}

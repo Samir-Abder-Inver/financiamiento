@@ -42,7 +42,7 @@ const PlanItem = ({ plan }) => {
       <ConfirmationModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
-        planName={plan.name}
+        plan={plan}
       />
     </>
   );
