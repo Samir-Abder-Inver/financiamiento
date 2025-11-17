@@ -6,7 +6,7 @@ import './Plans.css';
 
 const Plans = () => {
   return (
-    <div className="plans">
+    <div className="plans-container">
       <div className="plans-header">  
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -22,9 +22,11 @@ const Plans = () => {
           </svg>
           <h3>Planes disponibles - [Vehículo]</h3>
       </div>
-      {plans.map((plan, index) => (
-        <PlanItem key={index} plan={plan} />
-      ))}
+      <div className="plans-grid">
+        {plans.map((plan, index) => (
+          <PlanItem key={index} plan={plan} />
+        ))}
+      </div>
     </div>
   );
 };

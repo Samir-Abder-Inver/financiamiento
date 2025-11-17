@@ -8,7 +8,14 @@
   max-width: 600px; /* Establece un ancho máximo */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   font-family: 'Montserrat', sans-serif;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.plan-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
 .plan-item h4 {
   font-size: 10px;
   margin-bottom: 10px;
@@ -58,7 +65,31 @@
 
 @media (max-width: 576px) {
   .plan-actions button {
-    padding: 10px 20px;
+    padding: 10px 10px;
     font-size: 10px;
   }
+}
+
+@media (min-width: 768px) {
+    .plan-item {
+        width: 100%;
+        max-width: none;
+    }
+
+    .plan-item h4 {
+        font-size: 1.2rem;
+    }
+
+    .plan-details {
+        font-size: 1rem;
+    }
+
+    .plan-details div span {
+        font-size: 0.9rem;
+    }
+
+    .plan-actions button {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
 }
