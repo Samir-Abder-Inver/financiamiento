@@ -6,8 +6,11 @@
   width: 100%;
   max-width: 100%;
   margin: 0 auto;
-  padding: 1rem;
   text-align: center;
+}
+
+.main-content {
+  padding: 0 1rem; /* Padding aplicado solo al contenido principal */
 }
 
 .logo {
