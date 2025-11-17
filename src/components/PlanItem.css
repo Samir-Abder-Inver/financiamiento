@@ -1,14 +1,14 @@
-
 .plan-item {
   background-color: #f8f9fa;
   border: 1px solid #dee2e6;
   border-radius: 15px;
   padding: 0 20px;
-  margin-bottom: 20px;
-  width: 100%;
+  margin: 0 auto 10px; /* Centra el elemento y añade margen inferior */
+  width: 90%; /* Usa un ancho relativo */
+  max-width: 600px; /* Establece un ancho máximo */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Montserrat', sans-serif;
 }
-
 .plan-item h4 {
   font-size: 10px;
   margin-bottom: 10px;
@@ -17,22 +17,24 @@
 
 .plan-details {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
+  padding-bottom: 20px;
+  font-size: 10px;
 }
 
 .plan-details div {
-  display: flex;
-  flex-direction: column;
+  width: 50%;
+  text-align: left;
 }
 
-.plan-details span {
-  color: #6c757d;
+.plan-details div span {
   font-size: 8px;
+  color: #6c757d;
+  display: block;
 }
 
-.plan-details strong {
-  font-size: 10px;
+.plan-details div p {
+  font-weight: bold;
+  margin: 5px 0 0 0;
 }
 
 .plan-actions {
@@ -40,7 +42,6 @@
   justify-content: space-evenly;
   border-top: 1px solid #dee2e6;
   padding: 10px 0;
-
 }
 
 .plan-actions button {
@@ -50,7 +51,7 @@
   padding: 15px 30px;
   border-radius: 30px;
   cursor: pointer;
-  font-size: 1em;
+  font-size: 10px;
   font-weight: bold;
   
 }

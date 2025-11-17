@@ -8,7 +8,7 @@ const Plans = () => {
   return (
     <div className="plans">
       <div className="plans-header">
-        <h2>Planes disponibles - [Vehículo]</h2>
+        <h3>Planes disponibles - [Vehículo]</h3>
       </div>
       {plans.map((plan, index) => (
         <PlanItem key={index} plan={plan} />
