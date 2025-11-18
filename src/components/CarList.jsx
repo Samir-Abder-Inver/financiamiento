@@ -1,18 +1,18 @@
 
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import CarItem from './CarItem';
 import CarSkeleton from './CarSkeleton';
-import { getCars, getPlansByCar } from '../api/cars'; // Importamos getPlansByCar
+import { getCars, getPlansByCar } from '../api/cars';
 import './CarList.css';
 
 const CarList = () => {
   const [cars, setCars] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedCar, setSelectedCar] = useState(null); // Para el auto seleccionado
-  const [plans, setPlans] = useState([]); // Para guardar los planes
-  const [loadingPlans, setLoadingPlans] = useState(false);
-  const initialValue = 30000;
+  const [loadingCarId, setLoadingCarId] = useState(null);
+  const initialValue = 30000; // Este es el valor que necesitamos pasar
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCars = async () => {
@@ -33,22 +33,24 @@ const CarList = () => {
     fetchCars();
   }, []);
 
-  // Función para manejar la obtención de planes
-  const handleViewPlans = async (carName) => {
-    // La función de la API espera un `carId`, pero en el mock funciona con el nombre.
-    // En un caso real, usaríamos un ID único, ej: car.id
-    console.log(`Buscando planes para: ${carName}`);
-    setLoadingPlans(true);
-    setSelectedCar(carName);
+  const handleViewPlans = async (car) => {
+    if (car.status === 'increase') {
+      return;
+    }
+    setLoadingCarId(car.name);
     try {
-      const plansData = await getPlansByCar(carName);
-      setPlans(plansData);
-      console.log('Planes recibidos:', plansData);
-      // Aquí es donde en el futuro abriremos el modal
+      // ¡Aquí pasamos el segundo valor!
+      const plansData = await getPlansByCar(car.name, initialValue);
+      navigate('/plans', {
+        state: {
+          plans: plansData,
+          carName: car.name,
+        },
+      });
     } catch (error) {
       console.error("Error al obtener los planes:", error);
     } finally {
-      setLoadingPlans(false);
+      setLoadingCarId(null);
     }
   };
 
@@ -69,15 +71,15 @@ const CarList = () => {
           ))
         ) : (
           cars.map((car) => (
-            <CarItem 
-              key={car.carName} // Usamos una key única como el nombre del auto
-              car={car} 
-              onViewPlans={handleViewPlans} // Pasamos la función al componente hijo
+            <CarItem
+              key={car.name}
+              car={car}
+              onViewPlans={() => handleViewPlans(car)}
+              isLoading={loadingCarId === car.name}
             />
           ))
         )}
       </div>
-      {/* Aquí podríamos mostrar un modal con los planes si `selectedCar` no es null */}
     </div>
   );
 };

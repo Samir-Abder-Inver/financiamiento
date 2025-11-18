@@ -1,39 +1,16 @@
 
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './CarItem.css';
 import IncreaseModal from './IncreaseModal';
-import { getPlansByCar } from '../api/cars'; // 1. Importamos la función de la API
 
-const CarItem = ({ car }) => {
-  const navigate = useNavigate();
+const CarItem = ({ car, onViewPlans, isLoading }) => {
   const [showIncreaseModal, setShowIncreaseModal] = useState(false);
-  const [isLoading, setIsLoading] = useState(false); // 2. Estado de carga
 
-  // 3. Convertimos la función a `async`
-  const handleVerPlanes = async () => {
+  const handleVerPlanes = () => {
     if (car.status === 'increase') {
       setShowIncreaseModal(true);
     } else {
-      setIsLoading(true); // Activamos el estado de carga
-      try {
-        // 4. Llamamos a la API con el nombre del auto
-        const plansData = await getPlansByCar(car.name);
-        
-        // 5. Navegamos a la ruta /plans y pasamos los datos en el `state`
-        navigate('/plans', { 
-          state: { 
-            plans: plansData, 
-            carName: car.name 
-          } 
-        });
-        
-      } catch (error) {
-        console.error("Error al obtener los planes:", error);
-        // Aquí podrías mostrar una notificación de error al usuario
-      } finally {
-        setIsLoading(false); // Desactivamos el estado de carga
-      }
+      onViewPlans();
     }
   };
 
@@ -42,7 +19,7 @@ const CarItem = ({ car }) => {
   };
 
   const handleUpdate = () => {
-    // Lógica para manejar la actualización desde el modal
+    // Logic to handle the update from the modal
     setShowIncreaseModal(false);
   };
 
@@ -105,7 +82,6 @@ const CarItem = ({ car }) => {
           )}
         </div>
         <div className="card-actions">
-          {/* 6. Actualizamos el botón para mostrar el estado de carga */}
           <button className="action-button" onClick={handleVerPlanes} disabled={isLoading}>
             {isLoading ? 'Cargando...' : 'Ver planes'}
           </button>

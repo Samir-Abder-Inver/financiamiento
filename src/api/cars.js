@@ -20,42 +20,44 @@ const apiPost = async (endpoint, body) => {
     });
 
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({ message: 'No se pudo leer el cuerpo del error' }));
-      throw new Error(`Error ${response.status}: ${errorData.message || response.statusText}`);
+      // Si el status no es 2xx, lanzamos un error
+      const errorData = await response.json().catch(() => ({ message: response.statusText }));
+      throw new Error(`Error en la petición: ${errorData.message || 'Error desconocido'}`);
     }
 
+    // Si todo está bien, devolvemos los datos en formato JSON
     return await response.json();
+
   } catch (error) {
-    console.error(`Error en la petición a '${endpoint}':`, error);
-    throw error; // Relanzamos para que el componente que llama pueda manejarlo.
+    console.error('Error en apiPost:', error);
+    // Re-lanzamos el error para que el componente que llama pueda manejarlo
+    throw error;
   }
 };
 
 /**
- * Obtiene la lista de autos desde la API.
- * @param {number} initial - El valor inicial para filtrar los autos.
+ * Obtiene la lista de autos basada en una inicial.
+ * @param {number} initial - El monto inicial.
  * @returns {Promise<Array>}
  */
-export const getCars = (initial) => {
-  console.log("Obteniendo autos...");
-  // Corregido: el endpoint correcto es 'cars'
-  return apiPost('cars', { initial });
+export const getCars = async (initial) => {
+  console.log(`Obteniendo autos con inicial de ${initial}...`);
+  return await apiPost('cars', { initial });
 };
 
 /**
  * Obtiene los planes de financiamiento para un auto específico.
  * @param {string} carId - El ID del auto.
+ * @param {number} initial - El monto inicial.
  * @returns {Promise<Array>}
  */
-export const getPlansByCar = async (carId) => { // 1. Función async
-  console.log(`Obteniendo planes para el auto ${carId}...`);
+export const getPlansByCar = async (carId, initial) => {
+  console.log(`Obteniendo planes para el auto ${carId} con inicial de ${initial}...`);
   
-  // 2. Esperamos la respuesta de apiPost
-  const plansResponse = await apiPost('plans', { carId });
+  // Pasamos ambos valores en el cuerpo de la petición
+  const plansResponse = await apiPost('plans', { carId, initial });
   
-  // 3. ¡Aquí puedes hacer console.log de la respuesta!
   console.log('Respuesta obtenida en getPlansByCar:', plansResponse);
   
-  // 4. Devolvemos la respuesta para que otros componentes la usen.
   return plansResponse;
 };

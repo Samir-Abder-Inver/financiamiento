@@ -101,7 +101,7 @@
   }
 
   .tab-button {
-    font-size: 0.6rem; /* Letra más pequeña en las pestañas */
-    padding: 0.5rem 1rem;
+    font-size: 0.53rem; /* Letra más pequeña en las pestañas */
+    padding: 0.5rem 0.5rem;
   }
 }
