@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import PlanItem from './PlanItem';
 import './Plans.css';
@@ -8,13 +8,29 @@ const Plans = () => {
   const location = useLocation();
   const { plans = [], carName = 'Vehículo' } = location.state || {};
 
-  // 1. Definimos las versiones en un array. ¡Ahora puedes añadir las que quieras!
-  const carVersions = ['Classic', 'Premium', 'Sport', 'Deluxe'];
+  // Obtenemos dinámicamente las versiones únicas de los planes recibidos
+  // Ejemplo: si los planes tienen "Classic" y "Premium", el array será ['Classic', 'Premium']
+  const carVersions = useMemo(() => {
+    const versions = new Set(plans.map(p => p.version));
+    return Array.from(versions);
+  }, [plans]);
 
-  // 2. El estado activo se inicializa con la primera versión del array.
-  const [activeTab, setActiveTab] = useState(carVersions[0]);
+  const [activeTab, setActiveTab] = useState(carVersions[0] || '');
 
-  const displayedPlans = plans;
+  // Filtramos los planes que se deben mostrar según la pestaña activa
+  const displayedPlans = useMemo(() => {
+    if (!activeTab) return [];
+    return plans.filter(plan => plan.version === activeTab);
+  }, [plans, activeTab]);
+
+  if (carVersions.length === 0) {
+    // Esto se muestra si, por alguna razón, no llegaron versiones de planes
+    return (
+      <div className="plans-container">
+        <p>No se encontraron versiones de planes para {carName}.</p>
+      </div>
+    )
+  }
 
   return (
     <div className="plans-container">
@@ -24,7 +40,6 @@ const Plans = () => {
           viewBox="0 0 24 24"
           fill="currentColor"
           className="check-icon"
-          display="none"
         >
           <path
             fillRule="evenodd"
@@ -32,19 +47,18 @@ const Plans = () => {
             clipRule="evenodd"
           />
         </svg>
-        <h3>Versiones disponibles - {carName}</h3>
+        <h3>Planes disponibles - {carName}</h3>
       </div>
 
       <div className="plans-content-box">
         <div className="versions-tabs">
-          {/* 3. Usamos .map() para generar dinámicamente los botones */}
           {carVersions.map((version) => (
             <button
-              key={version} // La key es importante para React
+              key={version}
               className={`tab-button ${activeTab === version ? 'active' : ''}`}
               onClick={() => setActiveTab(version)}
             >
-              {version} 
+              {version}
             </button>
           ))}
         </div>
