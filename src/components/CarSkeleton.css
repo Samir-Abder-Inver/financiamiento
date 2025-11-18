@@ -1,0 +1,56 @@
+
+.car-item-skeleton {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.skeleton {
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: #e0e0e0;
+  }
+  50% {
+    background-color: #f0f0f0;
+  }
+  100% {
+    background-color: #e0e0e0;
+  }
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 150px; /* Altura reducida para ser menos alta */
+}
+
+.skeleton-content {
+  padding: 1rem;
+}
+
+.skeleton-text {
+  height: 1rem;
+  margin-bottom: 0.75rem;
+  width: 90%;
+}
+
+.skeleton-text.short {
+  width: 60%;
+}
+
+.skeleton-text.medium {
+  width: 75%;
+}
+
+.skeleton-button {
+  height: 40px;
+  width: 100%;
+  border-radius: 20px;
+  margin-top: 1rem;
+}

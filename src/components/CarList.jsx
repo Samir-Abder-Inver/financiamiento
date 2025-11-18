@@ -1,25 +1,30 @@
 
 import React, { useState, useEffect } from 'react';
 import CarItem from './CarItem';
-import { getCars } from '../api/cars'; // Importamos la nueva función
+import CarSkeleton from './CarSkeleton'; // Importamos el skeleton
+import { getCars } from '../api/cars';
 import './CarList.css';
 
 const CarList = () => {
   const [cars, setCars] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const initialValue = 30000; // Fijo como solicitado
+  const initialValue = 30000;
 
   useEffect(() => {
     const fetchCars = async () => {
       try {
+        // Dejamos un tiempo mínimo de carga para que el skeleton sea visible
+        // y la transición no sea tan brusca.
+        await new Promise(resolve => setTimeout(resolve, 500));
+
         setLoading(true);
         const data = await getCars(initialValue);
         setCars(data);
-        setError(null); // Limpiamos cualquier error previo
+        setError(null);
       } catch (err) {
         setError('No se pudieron cargar los autos. Inténtalo de nuevo más tarde.');
-        console.error(err); // Mantenemos el log del error original
+        console.error(err);
       } finally {
         setLoading(false);
       }
@@ -27,10 +32,6 @@ const CarList = () => {
 
     fetchCars();
   }, []);
-
-  if (loading) {
-    return <p>Cargando autos...</p>; // O un componente de spinner
-  }
 
   if (error) {
     return <p style={{ color: 'red' }}>{error}</p>;
@@ -43,9 +44,16 @@ const CarList = () => {
         <p>Tu crédito fue preaprobado por [$$Monto]. Elige tu vehículo y revisa los planes que aplican para ti.</p>
       </div>
       <div className="car-grid">
-        {cars.map((car, index) => (
-          <CarItem key={index} car={car} />
-        ))}
+        {loading ? (
+          // Mostramos 6 skeletons mientras carga
+          Array.from({ length: 6 }).map((_, index) => (
+            <CarSkeleton key={index} />
+          ))
+        ) : (
+          cars.map((car, index) => (
+            <CarItem key={index} car={car} />
+          ))
+        )}
       </div>
     </div>
   );
