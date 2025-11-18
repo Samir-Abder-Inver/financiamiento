@@ -1,39 +1,107 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 .plans-container {
-  font-family: 'Montserrat', sans-serif;
+  padding: 2rem;
+  max-width: 600px;
+  margin: 2rem auto;
+  font-family: 'Roboto', sans-serif;
+  color: #333;
   display: flex;
-  padding: 0;
   flex-direction: column;
-  align-items: center;
+  gap: 1.5rem;
 }
 
 .plans-header {
   display: flex;
   align-items: center;
-  margin-top: 20px;
-  width: 100%;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
+  gap: 0.75rem;
 }
 
 .plans-header h3 {
-  font-size: 14px;
-  margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.check-icon {
+  width: 28px;
+  height: 28px;
+  color: #28a745; /* Verde éxito */
+}
+
+.plans-content-box {
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Contenedor de las pestañas */
+.versions-tabs {
+  display: flex;
+  background-color: #f0f2f5;
+  border-radius: 12px;
+  padding: 5px;
+  width: 100%; /* CAMBIO: Ahora siempre ocupa el 100% */
+}
+
+.tab-button {
+  flex: 1; /* CAMBIO: Hace que los botones crezcan para llenar el espacio */
+  text-align: center; /* CAMBIO: Centra el texto dentro del botón que ha crecido */
+  white-space: nowrap; /* CAMBIO: Evita que el texto se parta, se aplica siempre */
+
+  padding: 0.6rem 1.2rem;
+  border: none;
+  background-color: transparent;
+  color: #555;
+  font-weight: 600;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.tab-button.active {
+  background-color: #ffffff;
+  color: #000000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .plans-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1rem;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-@media (min-width: 768px) {
-    .plans-header h3 {
-        font-size: 1.5rem;
-    }
+/* --- Estilos para Móviles --- */
+@media (max-width: 768px) {
+  .plans-container {
+    padding: 1rem;
+    margin: 1rem auto;
+  }
+
+  .plans-header h3 {
+    font-size: 0.8rem; /* Letra más pequeña para el título */
+  }
+
+  .plans-content-box {
+    padding: 1rem;
+  }
+
+  .versions-tabs {
+    overflow-x: auto; /* Permite el scroll horizontal si el contenido no cabe */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Oculta la barra de scroll (Firefox) */
+  }
+
+  .versions-tabs::-webkit-scrollbar {
+    display: none; /* Oculta la barra de scroll (Chrome, Safari) */
+  }
+
+  .tab-button {
+    font-size: 0.6rem; /* Letra más pequeña en las pestañas */
+    padding: 0.5rem 1rem;
+  }
 }
