@@ -68,7 +68,6 @@
   justify-content: center;
   gap: 1rem;
   font-size: 12px;
-  justify-content: center;
 }
 
 .btn {
@@ -98,4 +97,45 @@
 
 .btn-cancel:hover {
   background-color: #c62828;
+}
+
+/* Media Query para Tablets y pantallas más grandes */
+@media (min-width: 768px) {
+  .increase-modal-content {
+    max-width: 500px;
+    padding: 2rem;
+  }
+
+  .increase-modal-content h2 {
+    font-size: 1.5rem; /* ~24px */
+  }
+
+  .increase-modal-content p {
+    font-size: 1rem; /* ~16px */
+  }
+
+  .form-group {
+    font-size: 1rem; /* ~16px */
+  }
+
+  .modal-actions {
+    font-size: 1rem; /* ~16px */
+  }
+
+  .btn {
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
+  }
+}
+
+/* Media Query para Desktops */
+@media (min-width: 1024px) {
+  .increase-modal-content {
+    max-width: 550px;
+    padding: 2.5rem;
+  }
+
+  .increase-modal-content h2 {
+    font-size: 1.75rem; /* ~28px */
+  }
 }
