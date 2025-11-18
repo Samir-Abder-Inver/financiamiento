@@ -11,15 +11,41 @@
   align-items: center;
   padding: 20px;
   box-sizing: border-box;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .confirmation-modal-content {
   background-color: #fff;
   border-radius: 15px;
   padding: 20px;
-  max-width: 400px;
+  max-width: 400px; /* Base width for mobile */
   width: 100%;
   box-sizing: border-box;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Tablet: less wide */
+@media (min-width: 768px) {
+  .confirmation-modal-content {
+    max-width: 500px;
+  }
+}
+
+/* Desktop: slightly less wide and bigger fonts */
+@media (min-width: 1024px) {
+  .confirmation-modal-content {
+    max-width: 550px; /* Reduced from 800px */
+  }
 }
 
 .modal-header {
@@ -29,25 +55,25 @@
 }
 
 .check-icon {
-  width: 20px;
-  height: 20px;
+  width: 24px; /* Slightly larger */
+  height: 24px; /* Slightly larger */
   color: #28a745;
   margin-right: 10px;
 }
 
 .modal-header h3 {
   margin: 0;
-  font-size: 1em;
+  font-size: 1.2em; /* Increased font size */
 }
 
 .confirmation-modal-content h2 {
-  font-size: 1.2em;
-  margin-bottom: 15px;
+  font-size: 1.5em; /* Increased font size */
+  margin-bottom: 20px; /* More space */
   text-align: center;
 }
 
 .form-group {
-  margin-bottom: 10px;
+  margin-bottom: 15px; /* More space */
   position: relative;
 }
 
@@ -56,22 +82,22 @@
   left: 15px;
   top: 50%;
   transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
+  width: 22px; /* Slightly larger */
+  height: 22px; /* Slightly larger */
   color: #6c757d;
 }
 
 .form-group.with-icon input, .form-group.with-icon select {
-  padding-left: 40px;
+  padding-left: 45px; /* Adjust padding for larger icon */
 }
 
 .form-group input,
 .form-group select {
   width: 100%;
-  padding: 12px;
+  padding: 15px; /* More padding */
   border: 1px solid #ced4da;
   border-radius: 10px;
-  font-size: 0.9em;
+  font-size: 1em; /* Increased font size */
   box-sizing: border-box;
 }
 
@@ -87,16 +113,17 @@
 .modal-actions {
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
+  margin-top: 25px; /* More space */
 }
 
 .modal-actions button {
   border: none;
-  padding: 12px 25px;
+  padding: 15px 30px; /* Larger buttons */
   border-radius: 30px;
   cursor: pointer;
-  font-size: 0.9em;
+  font-size: 1em; /* Increased font size */
   font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
 .accept-button {
@@ -104,7 +131,15 @@
   color: #fff;
 }
 
+.accept-button:hover {
+  background-color: #333;
+}
+
 .cancel-button {
   background-color: #dc3545;
   color: #fff;
+}
+
+.cancel-button:hover {
+  background-color: #c82333;
 }

@@ -10,6 +10,16 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .increase-modal-content {
@@ -17,22 +27,38 @@
   padding: 1.5rem;
   border-radius: 16px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  width: 80%;
-  max-width: 400px;
+  width: 90%;
+  max-width: 400px; /* Mobile first width */
   text-align: center;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .increase-modal-content {
+    max-width: 500px;
+    padding: 2rem;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .increase-modal-content {
+    max-width: 550px;
+  }
 }
 
 .increase-modal-content h2 {
   margin-top: 0;
-  font-size: 14px;
+  font-size: 1.5em; /* Increased font size */
   font-weight: bold;
   color: #000;
+  margin-bottom: 1rem;
 }
 
 .increase-modal-content p {
   margin-bottom: 1.5rem;
   color: #666;
-  font-size: 12px;
+  font-size: 1em; /* Increased font size */
   line-height: 1.5;
   text-align: left;
 }
@@ -41,7 +67,6 @@
   margin-bottom: 1.5rem;
   text-align: left;
   padding: 0 1rem;
-  font-size: 12px;
 }
 
 .form-group label {
@@ -49,6 +74,7 @@
   margin-bottom: 0.5rem;
   font-weight: bold;
   color: #000;
+  font-size: 1em; /* Increased font size */
 }
 
 .numeric-input {
@@ -56,7 +82,7 @@
   padding: 1rem;
   border: 1px solid #ccc;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 1.2em; /* Increased font size */
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: textfield;
@@ -68,23 +94,22 @@
   display: flex;
   justify-content: center;
   gap: 1rem;
-  font-size: 12px;
-  justify-content: center;
 }
 
 .btn {
   padding: 1rem 2rem;
   border-radius: 25px;
-  font-size: 1rem;
+  font-size: 1em; /* Increased font size */
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
+  border: 1px solid transparent;
 }
 
 .btn-update {
   background-color: #000;
   color: #fff;
-  border: 1px solid #000;
+  border-color: #000;
 }
 
 .btn-update:hover {
@@ -94,7 +119,7 @@
 .btn-cancel {
   background-color: #e53935;
   color: #fff;
-  border: 1px solid #e53935;
+  border-color: #e53935;
 }
 
 .btn-cancel:hover {
