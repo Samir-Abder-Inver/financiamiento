@@ -2,14 +2,18 @@
 import React, { useState, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import PlanItem from './PlanItem';
+import ConfirmationModal from './ConfirmationModal';
+import IncreaseModal from './IncreaseModal';
 import './Plans.css';
 
 const Plans = () => {
   const location = useLocation();
   const { plans = [], carName = 'Vehículo' } = location.state || {};
 
-  // Obtenemos dinámicamente las versiones únicas de los planes recibidos
-  // Ejemplo: si los planes tienen "Classic" y "Premium", el array será ['Classic', 'Premium']
+  const [isConfirmationModalOpen, setConfirmationModalOpen] = useState(false);
+  const [isIncreaseModalOpen, setIncreaseModalOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState(null);
+
   const carVersions = useMemo(() => {
     const versions = new Set(plans.map(p => p.version));
     return Array.from(versions);
@@ -17,19 +21,36 @@ const Plans = () => {
 
   const [activeTab, setActiveTab] = useState(carVersions[0] || '');
 
-  // Filtramos los planes que se deben mostrar según la pestaña activa
   const displayedPlans = useMemo(() => {
     if (!activeTab) return [];
     return plans.filter(plan => plan.version === activeTab);
   }, [plans, activeTab]);
 
+  const handleChoosePlan = (plan) => {
+    setSelectedPlan(plan);
+    if (plan.status === 'available') {
+      setConfirmationModalOpen(true);
+    } else if (plan.status === 'increase') {
+      setIncreaseModalOpen(true);
+    }
+  };
+
+  const closeConfirmationModal = () => {
+    setConfirmationModalOpen(false);
+    setSelectedPlan(null);
+  };
+
+  const closeIncreaseModal = () => {
+    setIncreaseModalOpen(false);
+    setSelectedPlan(null);
+  };
+
   if (carVersions.length === 0) {
-    // Esto se muestra si, por alguna razón, no llegaron versiones de planes
     return (
       <div className="plans-container">
         <p>No se encontraron versiones de planes para {carName}.</p>
       </div>
-    )
+    );
   }
 
   return (
@@ -40,6 +61,7 @@ const Plans = () => {
           viewBox="0 0 24 24"
           fill="currentColor"
           className="check-icon"
+          display="none"
         >
           <path
             fillRule="evenodd"
@@ -66,13 +88,30 @@ const Plans = () => {
         <div className="plans-grid">
           {displayedPlans && displayedPlans.length > 0 ? (
             displayedPlans.map((plan, index) => (
-              <PlanItem key={index} plan={plan} />
+              <PlanItem key={index} plan={plan} onChoosePlan={handleChoosePlan} />
             ))
           ) : (
             <p>No hay planes disponibles para esta versión.</p>
           )}
         </div>
       </div>
+
+      {isConfirmationModalOpen && selectedPlan && (
+        <ConfirmationModal
+          isOpen={isConfirmationModalOpen}
+          onClose={closeConfirmationModal}
+          plan={selectedPlan}
+          carName={carName}
+        />
+      )}
+
+      {isIncreaseModalOpen && selectedPlan && (
+        <IncreaseModal
+          isOpen={isIncreaseModalOpen}
+          onClose={closeIncreaseModal}
+          plan={selectedPlan}
+        />
+      )}
     </div>
   );
 };

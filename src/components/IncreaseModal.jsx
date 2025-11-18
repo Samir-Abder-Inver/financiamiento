@@ -1,7 +1,12 @@
+
 import React from 'react';
 import './IncreaseModal.css';
 
-const IncreaseModal = ({ onClose, onUpdate }) => {
+const IncreaseModal = ({ isOpen, onClose, onUpdate, plan }) => {
+  if (!isOpen) {
+    return null;
+  }
+
   return (
     <div className="modal-overlay">
       <div className="increase-modal-content">
