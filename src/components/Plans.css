@@ -2,8 +2,8 @@
 
 .plans-container {
   font-family: 'Montserrat', sans-serif;
-  padding: 35px;
   display: flex;
+  padding: 0;
   flex-direction: column;
   align-items: center;
 }
