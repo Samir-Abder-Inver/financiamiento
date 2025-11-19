@@ -30,15 +30,15 @@ const CarItem = ({ car, onViewPlans, isLoading }) => {
           <h3 className="car-name">{car.name}</h3>
           <div className="price-info">
             <div className="price-item">
-              <span className="price-label">Inicial</span>
+              <span className="price-label">Inicial - desde</span>
               <span className="price-value">{car.initial}</span>
             </div>
             <div className="price-item">
-              <span className="price-label">Cuotas x12</span>
+              <span className="price-label">Cuotas x12 - desde</span>
               <span className="price-value">{car.cuotas}</span>
             </div>
             <div className="price-item">
-              <span className="price-label">Precio final</span>
+              <span className="price-label">Precio final - desde </span>
               <span className="price-value">{car.precioFinal}</span>
             </div>
           </div>

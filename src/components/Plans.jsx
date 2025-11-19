@@ -82,6 +82,7 @@ const Plans = () => {
       </div>
 
       <div className="plans-content-box">
+        <h4 className="versions-title">Versiones</h4>
         <div className="versions-tabs">
           {carVersions.map((version) => (
             <button
