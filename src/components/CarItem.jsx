@@ -88,9 +88,12 @@ const CarItem = ({ car, onViewPlans, isLoading }) => {
           <a href={car.features_link} className="action-button">Características</a>
         </div>
       </div>
-      {showIncreaseModal && (
-        <IncreaseModal onClose={handleCloseModal} onUpdate={handleUpdate} />
-      )}
+      <IncreaseModal 
+        isOpen={showIncreaseModal} 
+        onClose={handleCloseModal} 
+        onUpdate={handleUpdate} 
+        plan={car}
+      />
     </>
   );
 };
