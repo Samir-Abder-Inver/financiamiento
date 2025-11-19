@@ -1,6 +1,6 @@
 
 import React, { useState, useMemo } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import PlanItem from './PlanItem';
 import ConfirmationModal from './ConfirmationModal';
 import IncreaseModal from './IncreaseModal';
@@ -8,6 +8,7 @@ import './Plans.css';
 
 const Plans = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { plans = [], carName = 'Vehículo' } = location.state || {};
 
   const [isConfirmationModalOpen, setConfirmationModalOpen] = useState(false);
@@ -52,6 +53,11 @@ const Plans = () => {
   const closeIncreaseModal = () => {
     setIncreaseModalOpen(false);
     setSelectedPlan(null);
+  };
+
+  const handleUpdateInitial = (newInitial) => {
+    closeIncreaseModal(); // ¡Aquí está la corrección!
+    navigate('/', { state: { updatedInitial: newInitial } });
   };
 
   if (carVersions.length === 0) {
@@ -119,6 +125,7 @@ const Plans = () => {
         <IncreaseModal
           isOpen={isIncreaseModalOpen}
           onClose={closeIncreaseModal}
+          onUpdate={handleUpdateInitial}
           plan={selectedPlan}
         />
       )}
