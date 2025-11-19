@@ -11,7 +11,7 @@ const CarList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [loadingCarId, setLoadingCarId] = useState(null);
-  const initialValue = 30000; // Este es el valor que necesitamos pasar
+  const initialValue = 14600; // Este es el valor que necesitamos pasar
   const navigate = useNavigate();
 
   useEffect(() => {

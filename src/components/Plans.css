@@ -38,20 +38,18 @@
   gap: 1.5rem;
 }
 
-/* Contenedor de las pestañas */
 .versions-tabs {
   display: flex;
   background-color: #f0f2f5;
   border-radius: 12px;
   padding: 5px;
-  width: 100%; /* CAMBIO: Ahora siempre ocupa el 100% */
+  width: 100%;
 }
 
 .tab-button {
-  flex: 1; /* CAMBIO: Hace que los botones crezcan para llenar el espacio */
-  text-align: center; /* CAMBIO: Centra el texto dentro del botón que ha crecido */
-  white-space: nowrap; /* CAMBIO: Evita que el texto se parta, se aplica siempre */
-
+  flex: 1;
+  text-align: center;
+  white-space: nowrap;
   padding: 0.6rem 1.2rem;
   border: none;
   background-color: transparent;
@@ -63,11 +61,23 @@
   font-size: 0.95rem;
 }
 
-.tab-button.active {
-  background-color: #ffffff;
-  color: #000000;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+/* Colores base para las pestañas */
+.tab-green {
+  background-color: #28a745; /* Verde */
+  color: white;
 }
+
+.tab-yellow {
+  background-color: #ffc107; /* Amarillo */
+  color: black;
+}
+
+/* Estilo para la pestaña activa: un poco más oscura */
+.tab-button.active {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  filter: brightness(90%);
+}
+
 
 .plans-grid {
   display: flex;
@@ -83,7 +93,7 @@
   }
 
   .plans-header h3 {
-    font-size: 0.8rem; /* Letra más pequeña para el título */
+    font-size: 0.8rem;
   }
 
   .plans-content-box {
@@ -91,17 +101,17 @@
   }
 
   .versions-tabs {
-    overflow-x: auto; /* Permite el scroll horizontal si el contenido no cabe */
+    overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; /* Oculta la barra de scroll (Firefox) */
+    scrollbar-width: none;
   }
 
   .versions-tabs::-webkit-scrollbar {
-    display: none; /* Oculta la barra de scroll (Chrome, Safari) */
+    display: none;
   }
 
   .tab-button {
-    font-size: 0.53rem; /* Letra más pequeña en las pestañas */
+    font-size: 0.53rem;
     padding: 0.5rem 0.5rem;
   }
 }

@@ -21,6 +21,15 @@ const Plans = () => {
 
   const [activeTab, setActiveTab] = useState(carVersions[0] || '');
 
+  const versionAvailability = useMemo(() => {
+    const availability = {};
+    carVersions.forEach(version => {
+      const plansForVersion = plans.filter(p => p.version === version);
+      availability[version] = plansForVersion.some(p => p.status === 'available');
+    });
+    return availability;
+  }, [carVersions, plans]);
+
   const displayedPlans = useMemo(() => {
     if (!activeTab) return [];
     return plans.filter(plan => plan.version === activeTab);
@@ -77,7 +86,7 @@ const Plans = () => {
           {carVersions.map((version) => (
             <button
               key={version}
-              className={`tab-button ${activeTab === version ? 'active' : ''}`}
+              className={`tab-button ${activeTab === version ? 'active' : ''} ${versionAvailability[version] ? 'tab-green' : 'tab-yellow'}`}
               onClick={() => setActiveTab(version)}
             >
               {version}
