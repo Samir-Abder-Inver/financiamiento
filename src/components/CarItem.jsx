@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import './CarItem.css';
 import IncreaseModal from './IncreaseModal';
 
-const CarItem = ({ car, onViewPlans, isLoading }) => {
+const CarItem = ({ car, onViewPlans, isLoading, onInitialUpdate }) => {
   const [showIncreaseModal, setShowIncreaseModal] = useState(false);
 
   const handleVerPlanes = () => {
@@ -18,9 +18,9 @@ const CarItem = ({ car, onViewPlans, isLoading }) => {
     setShowIncreaseModal(false);
   };
 
-  const handleUpdate = () => {
-    // Logic to handle the update from the modal
-    setShowIncreaseModal(false);
+  const handleUpdate = (newAmount) => {
+    onInitialUpdate(newAmount); // Llama a la función del padre (CarList)
+    setShowIncreaseModal(false); // Cierra el modal
   };
 
   return (

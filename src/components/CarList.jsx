@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import CarItem from './CarItem';
 import CarSkeleton from './CarSkeleton';
-import IncreaseModal from './IncreaseModal'; // Importamos el modal
+// El modal ya no se usa aquí directamente
+// import IncreaseModal from './IncreaseModal'; 
 import { getCars, getPlansByCar } from '../api/cars';
 import './CarList.css';
 
@@ -15,11 +16,17 @@ const CarList = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Estado para controlar el modal
-  const [isIncreaseModalOpen, setIncreaseModalOpen] = useState(false);
-  const [selectedCar, setSelectedCar] = useState(null);
+  const [initialValue, setInitialValue] = useState(
+    location.state?.updatedInitial || 14600
+  );
 
-  const initialValue = location.state?.updatedInitial || 14600;
+  // Este efecto se dispara si volvemos de la página de planes con una inicial actualizada
+  useEffect(() => {
+    if (location.state?.updatedInitial && location.state.updatedInitial !== initialValue) {
+      setInitialValue(location.state.updatedInitial);
+    }
+  }, [location.state?.updatedInitial, initialValue]);
+
 
   useEffect(() => {
     const fetchCars = async () => {
@@ -39,20 +46,14 @@ const CarList = () => {
     fetchCars();
   }, [initialValue]);
 
-  const handleUpdateInitial = (newInitial) => {
-    setIncreaseModalOpen(false); // Cierra el modal
-    navigate('/', { state: { updatedInitial: newInitial } }); // Recarga la página con el nuevo valor
+  // Esta es la función que finalmente actualiza el estado y recarga los autos.
+  // Se pasará a través de CarItem hasta el modal.
+  const handleUpdateInitial = (newAmount) => {
+    setInitialValue(newAmount);
   };
 
+  // Esta función es para cuando el auto SÍ está disponible
   const handleViewPlans = async (car) => {
-    // Si el auto requiere aumentar la inicial, abrimos el modal
-    if (car.status === 'increase') {
-      setSelectedCar(car);
-      setIncreaseModalOpen(true);
-      return;
-    }
-
-    // Si el auto está disponible, vamos a los planes
     setLoadingCarId(car.name);
     try {
       const plansData = await getPlansByCar(car.name, initialValue);
@@ -60,6 +61,7 @@ const CarList = () => {
         state: {
           plans: plansData,
           carName: car.name,
+          updatedInitial: initialValue
         },
       });
     } catch (error) {
@@ -91,22 +93,17 @@ const CarList = () => {
             <CarItem
               key={car.name}
               car={car}
+              // Si el auto está disponible, le pasamos handleViewPlans
               onViewPlans={() => handleViewPlans(car)}
+              // A TODOS los items les pasamos la función para actualizar la inicial
+              onInitialUpdate={handleUpdateInitial}
               isLoading={loadingCarId === car.name}
             />
           ))
         )}
       </div>
 
-      {/* Renderizamos el modal cuando sea necesario */}
-      {isIncreaseModalOpen && (
-        <IncreaseModal
-          isOpen={isIncreaseModalOpen}
-          onClose={() => setIncreaseModalOpen(false)}
-          onUpdate={handleUpdateInitial}
-          plan={selectedCar} // Pasamos la información del auto/plan
-        />
-      )}
+      {/* El modal ya no se renderiza aquí */}
     </div>
   );
 };
