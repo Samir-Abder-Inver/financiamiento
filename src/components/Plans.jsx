@@ -93,7 +93,7 @@ const Plans = () => {
           {carVersions.map((version) => (
             <button
               key={version}
-              className={`tab-button ${activeTab === version ? 'active' : ''} ${versionAvailability[version] ? 'tab-green' : 'tab-yellow'}`}
+              className={`tab-button ${activeTab === version ? 'active' : ''}`}
               onClick={() => setActiveTab(version)}
             >
               {version}

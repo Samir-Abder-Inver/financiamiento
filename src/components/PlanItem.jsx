@@ -24,7 +24,12 @@ const PlanItem = ({ plan, onChoosePlan }) => {
         </div>
       </div>
       <div className="plan-actions">
-        <button onClick={() => onChoosePlan(plan)}>Elegir este plan</button>
+        <button
+          className={plan.status === 'available' ? 'btn-available' : 'btn-increase'}
+          onClick={() => onChoosePlan(plan)}
+        >
+          Elegir este plan
+        </button>
         <button onClick={handleGoBack}>Cambiar vehículo</button>
       </div>
     </div>

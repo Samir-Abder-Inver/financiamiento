@@ -17,7 +17,7 @@ const CarList = () => {
   const location = useLocation();
 
   const [initialValue, setInitialValue] = useState(
-    location.state?.updatedInitial || 14600
+    location.state?.updatedInitial || 14610
   );
 
   // Este efecto se dispara si volvemos de la página de planes con una inicial actualizada

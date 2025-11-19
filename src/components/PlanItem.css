@@ -3,17 +3,20 @@
   border: 1px solid #dee2e6;
   border-radius: 15px;
   padding: 0 20px;
-  margin: 0 auto 10px; /* Centra el elemento y añade margen inferior */
-  width: 90%; /* Usa un ancho relativo */
-  max-width: 600px; /* Establece un ancho máximo */
+  margin: 0 auto 10px;
+  /* Centra el elemento y añade margen inferior */
+  width: 90%;
+  /* Usa un ancho relativo */
+  max-width: 600px;
+  /* Establece un ancho máximo */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   font-family: 'Montserrat', sans-serif;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .plan-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 .plan-item h4 {
@@ -60,7 +63,27 @@
   cursor: pointer;
   font-size: 10px;
   font-weight: bold;
-  
+}
+
+/* Nuevos estilos para los botones de estado */
+.plan-actions button.btn-available {
+  background-color: #28a745 !important;
+  /* Verde */
+  color: white;
+}
+
+.plan-actions button.btn-available:hover {
+  background-color: #218838 !important;
+}
+
+.plan-actions button.btn-increase {
+  background-color: #ffc107 !important;
+  /* Amarillo */
+  color: black;
+}
+
+.plan-actions button.btn-increase:hover {
+  background-color: #e0a800 !important;
 }
 
 @media (max-width: 576px) {
@@ -71,25 +94,25 @@
 }
 
 @media (min-width: 768px) {
-    .plan-item {
-        width: 100%;
-        max-width: none;
-    }
+  .plan-item {
+    width: 100%;
+    max-width: none;
+  }
 
-    .plan-item h4 {
-        font-size: 1.2rem;
-    }
+  .plan-item h4 {
+    font-size: 1.2rem;
+  }
 
-    .plan-details {
-        font-size: 1rem;
-    }
+  .plan-details {
+    font-size: 1rem;
+  }
 
-    .plan-details div span {
-        font-size: 0.9rem;
-    }
+  .plan-details div span {
+    font-size: 0.9rem;
+  }
 
-    .plan-actions button {
-        padding: 1rem 1rem;
-        font-size: 0.8rem;
-    }
+  .plan-actions button {
+    padding: 1rem 1rem;
+    font-size: 0.8rem;
+  }
 }
