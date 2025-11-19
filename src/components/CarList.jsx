@@ -1,11 +1,9 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import CarItem from './CarItem';
 import CarSkeleton from './CarSkeleton';
-// El modal ya no se usa aquí directamente
-// import IncreaseModal from './IncreaseModal'; 
 import { getCars, getPlansByCar } from '../api/cars';
+import { parseCurrency } from '../utils/currency';
 import './CarList.css';
 
 const CarList = () => {
@@ -81,29 +79,33 @@ const CarList = () => {
         <h2>¡Excelente noticia, [Nombre]!</h2>
         <p>Tu crédito fue preaprobado por [$$Monto]. Elige tu vehículo y revisa los planes que aplican para ti.</p>
       </div>
-      <div className="initial-value-display">
-        <span>Tu inicial es de: </span>
-        <strong>${initialValue.toLocaleString('es-CL')}</strong>
-      </div>
       <div className="car-grid">
         {loading ? (
           Array.from({ length: 6 }).map((_, index) => <CarSkeleton key={index} />)
         ) : (
-          cars.map((car) => (
-            <CarItem
-              key={car.name}
-              car={car}
-              // Si el auto está disponible, le pasamos handleViewPlans
-              onViewPlans={() => handleViewPlans(car)}
-              // A TODOS los items les pasamos la función para actualizar la inicial
-              onInitialUpdate={handleUpdateInitial}
-              isLoading={loadingCarId === car.name}
-            />
-          ))
+          cars.map((car) => {
+            // Calculamos el status localmente
+            const carInitial = parseCurrency(car.initial);
+            const isAvailable = initialValue >= carInitial;
+            const calculatedStatus = isAvailable ? 'available' : 'increase';
+
+            // Creamos un objeto car modificado con el nuevo status
+            const carWithStatus = { ...car, status: calculatedStatus };
+
+            return (
+              <CarItem
+                key={car.name}
+                car={carWithStatus}
+                // Si el auto está disponible, le pasamos handleViewPlans
+                onViewPlans={() => handleViewPlans(carWithStatus)}
+                // A TODOS los items les pasamos la función para actualizar la inicial
+                onInitialUpdate={handleUpdateInitial}
+                isLoading={loadingCarId === car.name}
+              />
+            );
+          })
         )}
       </div>
-
-      {/* El modal ya no se renderiza aquí */}
     </div>
   );
 };

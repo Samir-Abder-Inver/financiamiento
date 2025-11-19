@@ -1,40 +1,50 @@
-
 import React, { useState, useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import PlanItem from './PlanItem';
 import ConfirmationModal from './ConfirmationModal';
 import IncreaseModal from './IncreaseModal';
+import { parseCurrency } from '../utils/currency';
 import './Plans.css';
 
 const Plans = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { plans = [], carName = 'Vehículo' } = location.state || {};
+  const { plans = [], carName = 'Vehículo', updatedInitial } = location.state || {};
 
   const [isConfirmationModalOpen, setConfirmationModalOpen] = useState(false);
   const [isIncreaseModalOpen, setIncreaseModalOpen] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState(null);
 
+  // Estado para la inicial actual, inicializado con lo que viene de la navegación
+  const [currentInitial, setCurrentInitial] = useState(updatedInitial || 0);
+
+  // Derivamos los planes actualizando su status según la inicial actual
+  const currentPlans = useMemo(() => {
+    return plans.map(plan => {
+      const planInitialValue = parseCurrency(plan.initial);
+
+      // Si la inicial actual es suficiente, el plan está disponible
+      // Mantenemos el status original si ya era 'available' o si ahora cumple
+      const isAvailable = currentInitial >= planInitialValue;
+
+      return {
+        ...plan,
+        status: isAvailable ? 'available' : 'increase'
+      };
+    });
+  }, [plans, currentInitial]);
+
   const carVersions = useMemo(() => {
-    const versions = new Set(plans.map(p => p.version));
+    const versions = new Set(currentPlans.map(p => p.version));
     return Array.from(versions);
-  }, [plans]);
+  }, [currentPlans]);
 
   const [activeTab, setActiveTab] = useState(carVersions[0] || '');
 
-  const versionAvailability = useMemo(() => {
-    const availability = {};
-    carVersions.forEach(version => {
-      const plansForVersion = plans.filter(p => p.version === version);
-      availability[version] = plansForVersion.some(p => p.status === 'available');
-    });
-    return availability;
-  }, [carVersions, plans]);
-
   const displayedPlans = useMemo(() => {
     if (!activeTab) return [];
-    return plans.filter(plan => plan.version === activeTab);
-  }, [plans, activeTab]);
+    return currentPlans.filter(plan => plan.version === activeTab);
+  }, [currentPlans, activeTab]);
 
   const handleChoosePlan = (plan) => {
     setSelectedPlan(plan);
@@ -56,8 +66,29 @@ const Plans = () => {
   };
 
   const handleUpdateInitial = (newInitial) => {
-    closeIncreaseModal(); // ¡Aquí está la corrección!
-    navigate('/', { state: { updatedInitial: newInitial } });
+    // Actualizamos el estado local de la inicial
+    setCurrentInitial(newInitial);
+
+    // Limpiamos el valor del plan (que viene como "$ 5.000.000") para compararlo
+    const planInitialValue = parseCurrency(selectedPlan.initial);
+
+    if (newInitial >= planInitialValue) {
+      // Cerramos el modal de aumento pero NO limpiamos el plan seleccionado todavía
+      setIncreaseModalOpen(false);
+
+      // Damos un pequeño timeout para asegurar que el modal anterior se cierre visualmente
+      // y luego abrimos el de confirmación
+      setTimeout(() => {
+        setConfirmationModalOpen(true);
+      }, 100);
+    } else {
+      alert(`El monto ingresado es menor a la inicial requerida para este plan (${selectedPlan.initial})`);
+    }
+  };
+
+  const handleBack = () => {
+    // Navegamos hacia atrás pasando la inicial actualizada
+    navigate('/', { state: { updatedInitial: currentInitial } });
   };
 
   if (carVersions.length === 0) {
@@ -104,7 +135,12 @@ const Plans = () => {
         <div className="plans-grid">
           {displayedPlans && displayedPlans.length > 0 ? (
             displayedPlans.map((plan, index) => (
-              <PlanItem key={index} plan={plan} onChoosePlan={handleChoosePlan} />
+              <PlanItem
+                key={index}
+                plan={plan}
+                onChoosePlan={handleChoosePlan}
+                onBack={handleBack}
+              />
             ))
           ) : (
             <p>No hay planes disponibles para esta versión.</p>

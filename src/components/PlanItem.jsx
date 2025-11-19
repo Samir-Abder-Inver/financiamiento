@@ -1,14 +1,7 @@
-
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import './PlanItem.css';
 
-const PlanItem = ({ plan, onChoosePlan }) => {
-  const navigate = useNavigate();
-
-  const handleGoBack = () => {
-    navigate(-1);
-  };
+const PlanItem = ({ plan, onChoosePlan, onBack }) => {
 
   return (
     <div className="plan-item">
@@ -30,7 +23,7 @@ const PlanItem = ({ plan, onChoosePlan }) => {
         >
           Elegir este plan
         </button>
-        <button onClick={handleGoBack}>Cambiar vehículo</button>
+        <button onClick={onBack}>Cambiar vehículo</button>
       </div>
     </div>
   );
