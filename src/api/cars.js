@@ -61,3 +61,13 @@ export const getPlansByCar = async (carId, initial) => {
   
   return plansResponse;
 };
+
+/**
+ * Envía los datos de la solicitud de crédito.
+ * @param {object} formData - Los datos del formulario.
+ * @returns {Promise<any>}
+ */
+export const submitApplication = async (formData) => {
+  console.log('Enviando la solicitud de crédito...');
+  return await apiPost('submit', formData);
+};

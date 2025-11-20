@@ -6,18 +6,19 @@ import { useLocation } from 'react-router-dom';
 const SuccessScreen = () => {
   const location = useLocation();
   const { plan } = location.state || {};
-
+console.log(plan)
   if (!plan) {
     return <div>No se ha seleccionado ningún plan.</div>;
   }
 
+  // Ahora usamos plan.planName en lugar de plan.name
   return (
     <div className="success-screen">
       <main className="success-content">
         <h2>Usted seleccionó</h2>
         <div className="selected-plan">
           <div className="success-card-content">
-            <div className="success-car-name">{plan.name}</div>
+            <div className="success-car-name">{plan.planName}</div> 
             <div className="success-price-info">
               <div className="success-price-item">
                 <span className="success-price-label">Inicial</span>
@@ -25,7 +26,7 @@ const SuccessScreen = () => {
               </div>
               <div className="success-price-item">
                 <span className="success-price-label">Cuotas mensuales (x12)</span>
-                <strong className="success-price-value">{plan.cuotas}</strong>
+                <strong className="success-price-value">{plan.monthlyPayment}</strong>
               </div>
               <div className="success-price-item">
                 <span className="success-price-label">Precio final</span>
@@ -44,7 +45,8 @@ const SuccessScreen = () => {
             <path className="success-checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
           </svg>
           <p>Su pre-aprobación finalizó.</p>
-          <p>¡Su {plan.name.split(' ')[0]} está listo!</p>
+          {/* Aquí también usamos plan.planName */}
+          <p>¡Su {plan.planName.split(' ')[0]} está listo!</p>
         </div>
 
         <div className="next-steps">
