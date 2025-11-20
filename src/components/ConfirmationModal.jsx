@@ -19,7 +19,7 @@ const ConfirmationModal = ({ isOpen, onClose, plan }) => {
     <div className="modal-backdrop">
       <div className="confirmation-modal-content">
         <div className="modal-header">
-          <h3>¿Desea confirmar el [{plan.name}] y enviar esta información?</h3>
+          <h3>¿Desea confirmar el {plan.planName} y enviar esta información?</h3>
         </div>
         <form onSubmit={handleSubmit}>
           <div className="form-group with-icon">
