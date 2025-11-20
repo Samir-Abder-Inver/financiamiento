@@ -76,9 +76,9 @@ const CarList = () => {
   return (
     <div className="car-list">
       <div className="intro">
-        <h2>¡Excelente noticia, [Nombre]!</h2>
-        <p>Tu crédito fue preaprobado por [$$Monto]. Elige tu vehículo y revisa los planes que aplican para ti.</p>
-      </div>
+  <h2>¡Excelente noticia, [Nombre]!</h2>
+  <p>Tu crédito fue preaprobado por ${(initialValue * 1.9).toLocaleString('es-CL')}. Elige tu vehículo y revisa los planes que aplican para ti.</p>
+</div>
       <div className="car-grid">
         {loading ? (
           Array.from({ length: 6 }).map((_, index) => <CarSkeleton key={index} />)

@@ -85,7 +85,6 @@
 .price-item {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
 }
 
 .price-label {
@@ -109,7 +108,7 @@
 
 .car-image {
     width: 100%;
-    aspect-ratio: 2.5 / 1;
+    aspect-ratio: 2.2 / 1;
     object-fit: cover;
     border-radius: 8px;
 }
@@ -145,6 +144,9 @@
     .price-info {
         gap: 0rem;
         padding-top: 0rem;
+    }
+    .price-item {
+        align-items: flex-start;
     }
 
     .price-label {
