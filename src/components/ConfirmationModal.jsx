@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { submitApplication } from '../api/cars'; // Importa la nueva función
 import './ConfirmationModal.css';
 
-const ConfirmationModal = ({ isOpen, onClose, plan }) => {
+const ConfirmationModal = ({ isOpen, onClose, plan, carImage }) => {
   const navigate = useNavigate();
 
   const [fullName, setFullName] = useState('');
@@ -42,7 +42,7 @@ const ConfirmationModal = ({ isOpen, onClose, plan }) => {
       const response = await submitApplication(formData); // Llama a la función de la API
 
       if (response) { // Asume que la respuesta es exitosa si no hay error
-        navigate('/success', { state: { plan, submittedData: formData } });
+        navigate('/success', { state: { plan, submittedData: formData, carImage } });
       } else {
         setError('Ocurrió un error inesperado al enviar la solicitud.');
       }

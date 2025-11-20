@@ -9,7 +9,7 @@ import './Plans.css';
 const Plans = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { plans = [], carName = 'Vehículo', updatedInitial } = location.state || {};
+  const { plans = [], carName = 'Vehículo', updatedInitial, carImage } = location.state || {};
 
   const [isConfirmationModalOpen, setConfirmationModalOpen] = useState(false);
   const [isIncreaseModalOpen, setIncreaseModalOpen] = useState(false);
@@ -154,6 +154,7 @@ const Plans = () => {
           onClose={closeConfirmationModal}
           plan={selectedPlan}
           carName={carName}
+          carImage={carImage} // <-- Pasamos la imagen del auto aquí
         />
       )}
 

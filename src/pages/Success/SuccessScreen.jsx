@@ -5,13 +5,12 @@ import { useLocation } from 'react-router-dom';
 
 const SuccessScreen = () => {
   const location = useLocation();
-  const { plan } = location.state || {};
-console.log(plan)
+  const { plan, carImage } = location.state || {}; // <-- Obtenemos la imagen del auto
+
   if (!plan) {
     return <div>No se ha seleccionado ningún plan.</div>;
   }
 
-  // Ahora usamos plan.planName en lugar de plan.name
   return (
     <div className="success-screen">
       <main className="success-content">
@@ -34,7 +33,8 @@ console.log(plan)
               </div>
             </div>
             <div className="success-car-image-section">
-              <img className="success-car-image" src="/assets/imagenes/Haval_H6.png" alt="Haval H6" />
+              {/* Usamos la imagen del auto seleccionada */}
+              <img className="success-car-image" src={carImage} alt={plan.planName} />
             </div>
           </div>
         </div>
@@ -45,7 +45,6 @@ console.log(plan)
             <path className="success-checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
           </svg>
           <p>Su pre-aprobación finalizó.</p>
-          {/* Aquí también usamos plan.planName */}
           <p>¡Su {plan.planName.split(' ')[0]} está listo!</p>
         </div>
 

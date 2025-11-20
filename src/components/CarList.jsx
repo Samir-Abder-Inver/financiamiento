@@ -52,6 +52,7 @@ const CarList = () => {
         state: {
           plans: plansData,
           carName: car.name,
+          carImage: car.image, // <-- Añadí la imagen del auto aquí
           updatedInitial: initialValue
         },
       });
