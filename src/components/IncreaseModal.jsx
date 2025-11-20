@@ -10,14 +10,22 @@ const IncreaseModal = ({ isOpen, onClose, onUpdate, plan }) => {
   }
 
   const handleUpdateClick = () => {
-    // La validación se hace con el estado del botón, pero mantenemos esto como seguridad
+    // The validation is done with the button's state, but we keep this as a safeguard
     if (newInitial && !isNaN(newInitial)) {
       onUpdate(Number(newInitial));
     }
   };
 
-  // El botón estará deshabilitado si el input está vacío o no es un número válido
+  // The button will be disabled if the input is empty or not a valid number
   const isInvalid = !newInitial || isNaN(newInitial) || Number(newInitial) <= 0;
+
+  const options = [
+    { value: '', label: 'Seleccione' },
+    { value: '14000', label: 'Menor a $15,000' },
+    { value: '15000', label: 'Desde $15,000 hasta $25,000' },
+    { value: '25000', label: 'Desde $25,000 hasta $35,000' },
+    { value: '35000', label: 'Mayor a $35,000' },
+  ];
 
   return (
     <div className="modal-overlay">
@@ -29,20 +37,24 @@ const IncreaseModal = ({ isOpen, onClose, onUpdate, plan }) => {
         </p>
         <div className="form-group">
           <label htmlFor="increase-amount">Inicial disponible</label>
-          <input
-            type="number"
+          <select
             id="increase-amount"
             className="numeric-input"
             value={newInitial}
             onChange={(e) => setNewInitial(e.target.value)}
-            placeholder="Ingresa un monto mayor a 0"
-          />
+          >
+            {options.map((option, index) => (
+              <option key={index} value={option.value} disabled={option.value === ''}>
+                {option.label}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="modal-actions">
           <button
             className="btn btn-update"
             onClick={handleUpdateClick}
-            disabled={isInvalid} // Añadimos el estado disabled
+            disabled={isInvalid}
           >
             Actualizar
           </button>

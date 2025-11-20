@@ -18,14 +18,6 @@ const CarList = () => {
     location.state?.updatedInitial || 14610
   );
 
-  // Este efecto se dispara si volvemos de la página de planes con una inicial actualizada
-  useEffect(() => {
-    if (location.state?.updatedInitial && location.state.updatedInitial !== initialValue) {
-      setInitialValue(location.state.updatedInitial);
-    }
-  }, [location.state?.updatedInitial, initialValue]);
-
-
   useEffect(() => {
     const fetchCars = async () => {
       try {
@@ -47,6 +39,7 @@ const CarList = () => {
   // Esta es la función que finalmente actualiza el estado y recarga los autos.
   // Se pasará a través de CarItem hasta el modal.
   const handleUpdateInitial = (newAmount) => {
+    console.log("aqui", newAmount)
     setInitialValue(newAmount);
   };
 
@@ -77,7 +70,7 @@ const CarList = () => {
     <div className="car-list">
       <div className="intro">
   <h2>¡Excelente noticia, [Nombre]!</h2>
-  <p>Tu crédito fue preaprobado por ${(initialValue * 1.9).toLocaleString('es-CL')}. Elige tu vehículo y revisa los planes que aplican para ti.</p>
+  <p>Tu crédito fue preaprobado por ${(initialValue).toLocaleString('es-CL')}. Elige tu vehículo y revisa los planes que aplican para ti.</p>
 </div>
       <div className="car-grid">
         {loading ? (

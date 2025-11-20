@@ -56,9 +56,6 @@
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 1rem;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: textfield;
   background-color: #fff;
   box-sizing: border-box;
 }
