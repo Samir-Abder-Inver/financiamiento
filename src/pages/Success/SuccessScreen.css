@@ -157,3 +157,52 @@
   line-height: 1.5;
   font-weight: bold;
 }
+
+@media (min-width: 768px) {
+  .success-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  .success-content h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+
+  .success-card-content {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  .success-car-name {
+    font-size: 24px;
+  }
+
+  .success-price-label {
+    font-size: 14px;
+  }
+
+  .success-price-value {
+    font-size: 18px;
+  }
+
+  .success-car-image {
+    aspect-ratio: 16 / 9;
+  }
+
+  .success-message h1 {
+    font-size: 32px;
+  }
+
+  .success-message p {
+    font-size: 18px;
+  }
+
+  .next-steps p {
+    font-size: 18px;
+  }
+}
