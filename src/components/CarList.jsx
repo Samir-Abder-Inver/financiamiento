@@ -4,6 +4,7 @@ import CarItem from './CarItem';
 import CarSkeleton from './CarSkeleton';
 import { getCars, getPlansByCar } from '../api/cars';
 import { parseCurrency } from '../utils/currency';
+import { isPlanAvailable } from '../utils/budgetConfig';
 import './CarList.css';
 
 const CarList = () => {
@@ -70,17 +71,17 @@ const CarList = () => {
   return (
     <div className="car-list">
       <div className="intro">
-  <h2>¡Excelente noticia, [Nombre]!</h2>
-  <p>Tu crédito fue preaprobado por ${(initialValue).toLocaleString('es-CL')}. Elige tu vehículo y revisa los planes que aplican para ti.</p>
-</div>
+        <h2>¡Excelente noticia, [Nombre]!</h2>
+        <p>Tu crédito fue preaprobado por ${(initialValue).toLocaleString('es-CL')}. Elige tu vehículo y revisa los planes que aplican para ti.</p>
+      </div>
       <div className="car-grid">
         {loading ? (
           Array.from({ length: 6 }).map((_, index) => <CarSkeleton key={index} />)
         ) : (
           cars.map((car) => {
-            // Calculamos el status localmente
+            // Calculamos el status usando la lógica hardcodeada de presupuesto
             const carInitial = parseCurrency(car.initial);
-            const isAvailable = initialValue >= carInitial;
+            const isAvailable = isPlanAvailable(initialValue, carInitial);
             const calculatedStatus = isAvailable ? 'available' : 'increase';
 
             // Creamos un objeto car modificado con el nuevo status

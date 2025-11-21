@@ -63,7 +63,7 @@
   white-space: nowrap;
   /* CAMBIO: Evita que el texto se parta, se aplica siempre */
 
-  padding: 0.6rem 1.2rem;
+  padding: 0.6rem 1rem;
   border: none;
   background-color: transparent;
   color: #555;
@@ -71,7 +71,7 @@
   border-radius: 9px;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
 }
 
 .tab-button.active {

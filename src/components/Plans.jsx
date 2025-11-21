@@ -3,7 +3,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import PlanItem from './PlanItem';
 import ConfirmationModal from './ConfirmationModal';
 import IncreaseModal from './IncreaseModal';
+import AlertModal from './AlertModal';
 import { parseCurrency } from '../utils/currency';
+import { isPlanAvailable } from '../utils/budgetConfig';
 import './Plans.css';
 
 const Plans = () => {
@@ -13,19 +15,20 @@ const Plans = () => {
 
   const [isConfirmationModalOpen, setConfirmationModalOpen] = useState(false);
   const [isIncreaseModalOpen, setIncreaseModalOpen] = useState(false);
+  const [isAlertModalOpen, setAlertModalOpen] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
   const [selectedPlan, setSelectedPlan] = useState(null);
 
   // Estado para la inicial actual, inicializado con lo que viene de la navegación
-  const [currentInitial, setCurrentInitial] = useState(updatedInitial || 0);
+  const [currentInitial, setCurrentInitial] = useState(updatedInitial || 10000);
 
-  // Derivamos los planes actualizando su status según la inicial actual
+  // Derivamos los planes actualizando su status según la inicial actual y los umbrales hardcodeados
   const currentPlans = useMemo(() => {
     return plans.map(plan => {
       const planInitialValue = parseCurrency(plan.initial);
 
-      // Si la inicial actual es suficiente, el plan está disponible
-      // Mantenemos el status original si ya era 'available' o si ahora cumple
-      const isAvailable = currentInitial >= planInitialValue;
+      // Usamos la lógica hardcodeada de presupuesto
+      const isAvailable = isPlanAvailable(currentInitial, planInitialValue);
 
       return {
         ...plan,
@@ -72,7 +75,8 @@ const Plans = () => {
     // Limpiamos el valor del plan (que viene como "$ 5.000.000") para compararlo
     const planInitialValue = parseCurrency(selectedPlan.initial);
 
-    if (newInitial >= planInitialValue) {
+    // Usamos isPlanAvailable para verificar si el plan está disponible con el nuevo presupuesto
+    if (isPlanAvailable(newInitial, planInitialValue)) {
       // Cerramos el modal de aumento pero NO limpiamos el plan seleccionado todavía
       setIncreaseModalOpen(false);
 
@@ -82,7 +86,10 @@ const Plans = () => {
         setConfirmationModalOpen(true);
       }, 100);
     } else {
-      alert(`El monto ingresado es menor a la inicial requerida para este plan (${selectedPlan.initial})`);
+      // Mostramos el modal de alerta personalizado en lugar del alert nativo
+      setAlertMessage(`El monto ingresado es menor a la inicial requerida para este plan (${selectedPlan.initial})`);
+      setIncreaseModalOpen(false);
+      setAlertModalOpen(true);
     }
   };
 
@@ -166,6 +173,13 @@ const Plans = () => {
           plan={selectedPlan}
         />
       )}
+
+      <AlertModal
+        isOpen={isAlertModalOpen}
+        onClose={() => setAlertModalOpen(false)}
+        message={alertMessage}
+        title="Presupuesto insuficiente"
+      />
     </div>
   );
 };
