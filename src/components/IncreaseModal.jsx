@@ -21,10 +21,10 @@ const IncreaseModal = ({ isOpen, onClose, onUpdate, plan }) => {
 
   const options = [
     { value: '', label: 'Seleccione' },
-    { value: '14000', label: 'Menor a $15,000' },
-    { value: '15000', label: 'Desde $15,000 hasta $25,000' },
-    { value: '25000', label: 'Desde $25,000 hasta $35,000' },
-    { value: '35000', label: 'Mayor a $35,000' },
+    { value: '10000', label: 'Menor a $15,000' },
+    { value: '15000', label: 'Desde $15,000 hasta $20,000' },
+    { value: '20000', label: 'Desde $20,000 hasta $30,000' },
+    { value: '30000', label: 'Mayor a $30,000' },
   ];
 
   return (
