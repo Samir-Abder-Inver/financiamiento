@@ -96,9 +96,8 @@
   stroke-width: 2;
   stroke: #fff;
   stroke-miterlimit: 10;
-  box-shadow: inset 0px 0px 0px #4bb71b;
-  animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
   margin: 0 auto 1rem;
+  background: transparent;
 }
 
 .success-checkmark__circle {
@@ -107,8 +106,8 @@
   stroke-width: 2;
   stroke-miterlimit: 10;
   stroke: #4bb71b;
-  fill: none;
-  animation: stroke .6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+  fill: transparent;
+  animation: stroke .6s cubic-bezier(0.65, 0, 0.45, 1) forwards, fill .4s ease-in-out .4s forwards;
 }
 
 .success-checkmark__check {
@@ -124,21 +123,9 @@
   }
 }
 
-@keyframes scale {
-
-  0%,
-  100% {
-    transform: none;
-  }
-
-  50% {
-    transform: scale3d(1.1, 1.1, 1);
-  }
-}
-
 @keyframes fill {
   100% {
-    box-shadow: inset 0px 0px 0px 40px #4bb71b;
+    fill: #4bb71b;
   }
 }
 

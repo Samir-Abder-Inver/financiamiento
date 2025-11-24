@@ -17,7 +17,7 @@ const SuccessScreen = () => {
         <h2>Usted seleccionó</h2>
         <div className="selected-plan">
           <div className="success-card-content">
-            <div className="success-car-name">{plan.planName}</div> 
+            <div className="success-car-name">{plan.planName}</div>
             <div className="success-price-info">
               <div className="success-price-item">
                 <span className="success-price-label">Inicial</span>
@@ -49,7 +49,7 @@ const SuccessScreen = () => {
         </div>
 
         <div className="next-steps">
-          <p> ¡Felicidades! Su crédito está formalmente aprobado. Solo falta un paso esencial: seleccionar el color, firma de la documentación y pago de la inicial. Un asesor comercial te estará contactando.</p>
+          <p> ¡Felicidades! Su crédito está formalmente pre-aprobado. Solo falta un paso esencial: seleccionar el color, firma de la documentación y pago de la inicial. Un asesor comercial te estará contactando.</p>
         </div>
       </main>
     </div>
